@@ -1,0 +1,49 @@
+<h3>Detalle de la transacción</h3>
+<div>
+  <div *ngIf="currentTutorial.id" class="edit-form">
+    <h4>Transacción</h4>
+    <form>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <input
+          type="text"
+          class="form-control"
+          id="description"
+          [(ngModel)]="currentTutorial.description"
+          name="description"
+        />
+      </div>
+      <div class="form-group">
+        <label for="title">Monto</label>
+        <input
+          type="text"
+          class="form-control"
+          id="amount"
+          [(ngModel)]="currentTutorial.amount"
+          name="amount"
+        />
+      </div>
+
+      <div class="form-group">
+        <label><strong>Fecha:</strong></label>
+        {{ currentTutorial.createdAt ? currentTutorial.createdAt : "Pending" }}
+      </div>
+    </form>
+
+    <button class="btn btn-warning mr-2" (click)="list()">Volver</button>
+    <button class="btn btn-danger mr-2" (click)="deleteTutorial()">
+      Borrar
+    </button>
+
+    <button type="submit" class="btn btn-info mb-2" (click)="updateTutorial()">
+      Guardar
+    </button>
+
+    <p>{{ message }}</p>
+  </div>
+
+  <div *ngIf="!currentTutorial.id">
+    <br />
+    <p>No se puede acceder a esta trasacción...</p>
+  </div>
+</div>

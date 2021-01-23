@@ -1,0 +1,47 @@
+<div class="list row">
+  <div class="col-md-6">
+    <h4>Listado de Transacciones</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let tutorial of tutorials; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActiveTutorial(tutorial, i)"
+      >
+        Numero : {{ tutorial.id }}
+      </li>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div *ngIf="currentTutorial">
+      <h4>Transacción</h4>
+      <div>
+        <label><strong>Codigo:</strong></label>
+        {{ currentTutorial.id }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentTutorial.description }}
+      </div>
+      <div>
+        <label><strong>Monto:</strong></label> {{ currentTutorial.amount }}
+      </div>
+      <div>
+        <label><strong>Fecha:</strong></label>
+        {{ currentTutorial.createdAt ? currentTutorial.createdAt : "Pending" }}
+      </div>
+
+      <a
+        class="btn btn-success"
+        routerLink="/tutorials/{{ currentTutorial.id }}"
+      >
+        Actualizar
+      </a>
+    </div>
+
+    <div *ngIf="!currentTutorial">
+      <br />
+      <p>Seleccione una Transacción</p>
+    </div>
+  </div>
+</div>
